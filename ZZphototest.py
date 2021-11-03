@@ -1,7 +1,7 @@
-import PCF8591
+import PCF8591 as ADC
 import RPi.GPIO as GPIO
 
-photoresistor = PCF8591(0x48)
+photoresistor = ADC(0x48)
 
 # set up led
 ledPin = 20
