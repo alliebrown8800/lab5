@@ -26,13 +26,13 @@ class Stepper:
     while time.time() < endTime:
       pass
 
-  def __halfstep(self, dir, state):
+  def __halfstep(self, dir):
     # dir = +1 for CCW and -1 for CW
-    state += dir
-    if state > 7:   state = 0
-    elif state < 0: state = 7
+    self.state += dir
+    if self.state > 7:   self.state = 0
+    elif self.state < 0: self.state = 7
     for pin in range(4):    # 4 pins that need to be energized
-      GPIO.output(self.pins[pin], self.sequence[state][pin])
+      GPIO.output(self.pins[pin], self.sequence[self.state][pin])
     self.__delay_us(1000) # FIGURE OUT HOW FAR TO PUSH THIS VALUE (MINIMIZE IT)
     # Note: a full rotation is 4096 half-steps
 
