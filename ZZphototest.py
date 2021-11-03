@@ -1,4 +1,3 @@
-import smbus
 from PCF8591 import PCF8591 as ADC
 import RPi.GPIO as GPIO
 

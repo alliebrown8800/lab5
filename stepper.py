@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-import PCF8591
+from PCF8591 import PCF8591
 
 # Pin setup
 ledPin = 20 # you can change this
@@ -8,7 +8,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(ledPin, GPIO.OUT) # led pin is output
 
 # ADC setup
-PCF8591.setup(0x48)
+photoresistor = PCF8591(0x48)
 
 class Stepper:
 
@@ -52,14 +52,14 @@ class Stepper:
       self.__moveSteps(halfsteps, diff/diff) # move the specified angle in the specified direction (diff/diff will be 1 or -1)
 
   def zero(self, prev_angle):
-    threshold = 150 # threshold for if cardboard is covering (change if needed)
+    threshold = 100 # threshold for if cardboard is covering (change if needed)
     if prev_angle <= 180: # for most efficient direction
       dir = 1 # turn counterclockwise
     else:
       dir = -1 # turn clockwise
     GPIO.output(ledPin, 1) # turn LED on
-    photo = PCF8591.read(0) # read photoresistor value
-    while photo > threshold: # while the light is still on the photoresistor...
+    photo = photoresistor.read(0) # read photoresistor value
+    while photo < threshold: # while the light is still on the photoresistor...
       self.__moveSteps(8, dir) # move 8 half steps in the specified direction
       photo = PCF8591.read(0) # read photoresistor value
     GPIO.output(ledPin, 0) # once done, turn off LED

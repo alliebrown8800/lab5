@@ -1,5 +1,5 @@
 import json
-import Stepper
+from stepper import Stepper
 import time
 
 myMotor = Stepper() # the stepper motor
