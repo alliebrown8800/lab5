@@ -1,0 +1,18 @@
+<!-- Put this file in /var/www/html/stepper_control.html 
+ and put stepper_control.cgi file in /usr/lib/cgi-bin/stepper_control.cgi -->
+
+
+
+</html>
+<html>
+<form action="/cgi-bin/stepper_control.cgi" method="POST">
+
+<input type="range" name="angleslider" min ="0" max="359" value ="500"/><br>
+<input type="submit" value="Submit Angle" name="angle_submit" />
+<br> <br>
+<strong>Or...</strong>
+<br> <br>
+<input type="submit" value="Zero the position" name="zero_submit" />
+
+</form>
+</html>
