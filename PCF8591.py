@@ -1,5 +1,4 @@
 # THE CLASS FOR THE ADC:
-
 import smbus
 
 class PCF8591:

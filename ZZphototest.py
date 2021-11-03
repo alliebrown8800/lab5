@@ -1,4 +1,5 @@
-import PCF8591 as ADC
+import smbus
+from PCF8591.py import PCF8591 as ADC
 import RPi.GPIO as GPIO
 
 photoresistor = ADC(0x48)
