@@ -12,11 +12,16 @@ GPIO.setup(ledPin, GPIO.OUT)
 # turn on led
 GPIO.output(ledPin, 1)
 
-# make sure to hook up middle jumper
-photo = photoresistor.read(0)
-print(photo)
+try: # this line + except statements for a smooth exit
 
+  while True:
+    # make sure to hook up middle jumper
+    photo = photoresistor.read(0)
+    print(photo)
 
-
+except KeyboardInterrupt: 
+  print('\nExiting')
+except Exception as e: # catch all other errors
+  print('\n', e)
 
 
