@@ -48,7 +48,7 @@ class Stepper:
       if abs(diff) > 180: # this means it would be better to move the other way
         if diff > 0: diff = diff - 360
         elif diff < 0: diff = diff + 360
-      halfsteps = abs(diff*11.38)
+      halfsteps = int(abs(diff*11.38))
       self.__moveSteps(halfsteps, diff/diff) # move the specified angle in the specified direction (diff/diff will be 1 or -1)
 
   def zero(self, prev_angle):
